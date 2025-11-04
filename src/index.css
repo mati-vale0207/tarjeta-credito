@@ -1,0 +1,284 @@
+/*  Variables globales para colores y temas */
+:root {
+  --primary: #000000;            /* Color principal (negro) */
+  --primary-light: #fcfcfc;      /* Versión clara del primario (casi blanco) */
+  --primary-dark: #1610b6;       /* Versión oscura del primario (azul intenso) */
+  --alert: #ff6a96;              /* Color de alerta para mensajes de error */
+  --secondary: #ffffff;          /* Color secundario (blanco) */
+  --greyLight-0: #dcdcdc;        /* Grises claros para texto o bordes */
+  --greyLight-1: #e0ecf7;
+  --greyLight-2: #c8dbf0;
+  --greyDark-1: #92acc4;         /* Grises oscuros para texto o sombras */
+  --greyDark-2: #5a768f;
+}
+ 
+/* Configuraciones generales */
+html {
+  font-size: 62.5%;              /* 1rem = 10px para cálculos más sencillos */
+  font-family: "Nunito", sans-serif; /* Fuente principal de la página */
+}
+ 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;        /* Incluye bordes y relleno en medidas */
+}
+ 
+body {
+  height: 100vh;                 /* Toma el 100% del alto de la ventana */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #444;                   /* Texto gris oscuro */
+  background: linear-gradient(to right, #000000, #000000); /* Fondo degradado */
+}
+ 
+/* Contenedor principal */
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4fr 3fr; /* División: 4 partes para tarjeta, 3 para formulario */
+  padding: 3.2rem 4.8rem;
+  width: 85rem;
+  height: 40rem;
+  background-color: #313131;
+  border-radius: 12px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25); /* Sombra para profundidad */
+}
+ 
+/* Tarjeta con perspectiva para efecto 3D */
+.card {
+  place-self: center;
+  width: 400px;
+  height: 250px;
+  perspective: 1500px; /* Habilita el efecto de rotación 3D */
+  position: relative;
+}
+ 
+/* Interior de la tarjeta que se puede girar */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  transition: transform 0.8s ease; /* Animación suave de giro */
+  transform-style: preserve-3d;
+  box-shadow: 0 5px 20px rgba(218, 165, 32, 0.7); /* Sombra dorada */
+}
+ 
+/* Estado cuando la tarjeta está girada */
+.card-inner.flipped {
+  transform: rotateY(180deg); /* Gira 180 grados en eje Y */
+}
+ 
+/* Ambas caras de la tarjeta */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  backface-visibility: hidden; /* Oculta el reverso cuando está atrás */
+  color: #fff;
+  font-family: "Roboto Mono", monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 30px;
+  box-sizing: border-box;
+}
+ 
+/* Estilo frontal dorado */
+.card-front {
+  background: linear-gradient(135deg, #bfa251, #f8de7e 60%, #ab8f45);
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.4),
+    0 0 25px rgba(171, 143, 69, 0.8); /* Luces doradas y resplandor */
+}
+ 
+/* Número de tarjeta */
+.card-number {
+  font-size: 2.6rem;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+}
+ 
+/* Etiquetas e información */
+.card-label {
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--greyLight-0);
+  margin-bottom: 0.8rem;
+}
+ 
+.card-info {
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #fff;
+}
+ 
+/* Parte inferior de la tarjeta (nombre y fecha) */
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+ 
+/* Reverso de la tarjeta */
+.card-back {
+  background: linear-gradient(135deg, #a98c30, #8e741f 60%, #7f6b1e);
+  transform: rotateY(180deg); /* Ya girado por defecto */
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.15),
+    0 0 15px rgba(114, 94, 14, 0.8);
+  position: relative;
+}
+ 
+/* Banda magnética */
+.black-strip {
+  background: #222;
+  height: 50px;
+  margin-top: 30px;
+  border-radius: 6px;
+}
+ 
+/* Sección del CVV */
+.cvv-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 20px;
+}
+ 
+.cvv-label {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  letter-spacing: 0.8px;
+  color: #f0e68c;
+}
+ 
+.cvv-code {
+  background: #fff;
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  width: 80px;
+  text-align: center;
+}
+ 
+/* Estilo del formulario */
+.form {
+  padding: 1.6rem;
+  padding-left: 2.4rem;
+}
+ 
+h2 {
+  margin-bottom: 1.6rem;
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.5px;
+}
+ 
+.form label {
+  display: block;
+  color: var(--greyDark-2);
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.5px;
+}
+ 
+.form input {
+  padding: 0.8rem;
+  display: block;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid var(--greyLight-2);
+  margin-bottom: 2.2rem;
+  color: inherit;
+  width: 100%;
+}
+ 
+/* Estilo al enfocar */
+input:focus {
+  outline: none;
+}
+ 
+/* Estilo del placeholder */
+input::placeholder {
+  color: var(--greyDark-1);
+  font-size: 1.4rem;
+}
+ 
+/* Estructura del formulario */
+.form-details {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: flex-start;
+}
+ 
+.form-details input {
+  width: 40%;
+  margin-bottom: 0.6rem !important;
+}
+ 
+/* Espaciado entre inputs de fecha y CVV */
+.form-details div:last-of-type {
+  margin-left: -7rem;
+}
+ 
+/* Botón de confirmación */
+.btn-confirm {
+  background-color: var(--primary-dark);
+  border: none;
+  padding: 1.2rem 2.4rem;
+  width: 100%;
+  color: #fff;
+  border-radius: 6px;
+  margin-top: 1.6rem;
+}
+ 
+.btn-confirm:hover {
+  background-color: var(--primary);
+}
+ 
+/* Botón para cerrar (en vista final) */
+.btn-close {
+  position: absolute;
+  top: 2.2rem;
+  right: 2.6rem;
+  border: none;
+  background: none;
+  font-size: 2.2rem;
+}
+ 
+/* Mensajes de error */
+.error {
+  font-size: 1.2rem;
+  color: var(--alert);
+}
+ 
+/* Ocultar elementos */
+.hidden {
+  display: none;
+}
+ 
+/* Mensaje final de éxito */
+.success {
+  color: inherit;
+  font-family: sans-serif;
+  font-size: 2.6rem;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+ 
